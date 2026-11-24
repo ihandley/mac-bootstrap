@@ -49,3 +49,6 @@ fi
 
 # Configure Git to use GitHub CLI for credentials
 gh auth setup-git --hostname github.com
+
+# Initialize chezmoi with the private dotfiles repository.
+chezmoi init https://github.com/ihandley/dotfiles.git
