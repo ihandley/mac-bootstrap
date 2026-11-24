@@ -50,8 +50,15 @@ fi
 # Configure Git to use GitHub CLI for credentials
 gh auth setup-git --hostname github.com
 
-# Initialize chezmoi with the private dotfiles repository.
-chezmoi init https://github.com/ihandley/dotfiles.git
+# Initialize chezmoi only if no source repository exists.
+CHEZMOI_SOURCE="$(chezmoi source-path)"
+
+if [[ ! -d "$CHEZMOI_SOURCE/.git" ]]; then
+    echo "Initializing chezmoi..."
+    chezmoi init https://github.com/ihandley/dotfiles.git
+else
+    echo "Chezmoi already initialized."
+fi
 
 # Apply the managed development directory structure.
 chezmoi apply "$HOME/src"
