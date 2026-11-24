@@ -52,3 +52,6 @@ gh auth setup-git --hostname github.com
 
 # Initialize chezmoi with the private dotfiles repository.
 chezmoi init https://github.com/ihandley/dotfiles.git
+
+# Apply the managed development directory structure.
+chezmoi apply "$HOME/src"
