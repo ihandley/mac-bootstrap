@@ -33,6 +33,8 @@ fi
 # Initialize Homebrew for tjis shell.
 eval "$("$BREW_BIN" shellenv)"
 
-
 echo "Prerequisites verified."
 brew --version
+
+# Install bootstrap dependencies.
+brew install gh chezmoi
