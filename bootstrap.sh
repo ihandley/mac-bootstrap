@@ -17,6 +17,11 @@ if ! xcode-select -p >/dev/null 2>&1; then
 fi
 
 #Ensure Homebrew is installed.
+if [[ "$(uname -m)" != "arm64" ]]; then
+    echo "This script requires Apple Silicon." >&2
+    exit 1
+fi
+
 BREW_BIN="/opt/homebrew/bin/brew"
 if [[ ! -x "$BREW_BIN" ]]; then
   echo "Installing Homebrew..."
