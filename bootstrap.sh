@@ -50,7 +50,7 @@ fi
 # Configure Git to use GitHub CLI for credentials
 gh auth setup-git --hostname github.com
 
-# Initialize chezmoi only if no source repository exists.
+# Initialize chezmoi if necessary.
 CHEZMOI_SOURCE="$(chezmoi source-path)"
 
 if [[ ! -d "$CHEZMOI_SOURCE/.git" ]]; then
@@ -58,7 +58,12 @@ if [[ ! -d "$CHEZMOI_SOURCE/.git" ]]; then
     chezmoi init https://github.com/ihandley/dotfiles.git
 else
     echo "Chezmoi already initialized."
+    echo "Updating dotfiles..."
+    chezmoi git -- pull --ff-only
 fi
 
-# Apply the managed development directory structure.
+# Apply only the development directory structure.
+echo "Creating managed development directories..."
 chezmoi apply "$HOME/src"
+
+echo "Bootstrap complete."
