@@ -16,4 +16,18 @@ if ! xcode-select -p >/dev/null 2>&1; then
   exit 0
 fi
 
+#Ensure Homebrew is installed.
+BREW_BIN="/opt/homebrew/bin/brew"
+if [[ ! -x "$BREW_BIN" ]]; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Homebrew is already installed."
+fi
+
+# Initialize Homebrew for tjis shell.
+eval "$("$BREW_BIN" shellenv)"
+
+
 echo "Prerequisites verified."
+brew --version
