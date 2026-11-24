@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Verify operating system.
-if [[ "$(uname -s)" != "Darwin" ]]; thenq
+if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "This script requires macOS." >&2
   exit 1
 fi
