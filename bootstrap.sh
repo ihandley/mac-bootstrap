@@ -38,3 +38,14 @@ brew --version
 
 # Install bootstrap dependencies.
 brew install gh chezmoi
+
+# Authenticate to GitHub if necessary
+if ! gh auth status --hostname github.com >/dev/null 2>&1; then
+  echo "Authenticating to GitHub..."
+  gh auth login --hostname github.com --git-protocol https --web
+else
+  echo "Already authenticated to GitHub."
+fi
+
+# Configure Git to use GitHub CLI for credentials
+gh auth setup-git --hostname github.com
